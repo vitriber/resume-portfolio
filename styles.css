@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #E7E7E7;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+body, input, textarea, button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* background: */
+progress::-webkit-progress-bar {background-color: #E7E7E7; width: 100%;}
+progress {background-color: #E7E7E7;}
+
+/* value: */
+progress::-webkit-progress-value {background-color: #0FB57C !important;}
+progress::-moz-progress-bar {background-color: #0FB57C !important;}
+progress {color: #0FB57C;}
+
+/* Header */
+
+header {
+    background: #0FB57C;
+}
+
+.header-main{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 1rem 12rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title h2, h3{
+    color: #FFF;
+}
+
+.header-menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-menu ul {
+    list-style: none;
+    margin: 0 0.9rem 0 0;
+    padding: 0; 
+    overflow: hidden;   
+}
+
+.header-menu li {
+    float: left;
+}
+  
+.header-menu  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+}
+  
+.header-menu li a:hover {
+    background-color: #111111;
+}
+
+.header-menu button {
+    padding: 0.7rem;
+    background-color: #2E785E;
+    border-style: none;
+    color: #FFF;
+
+    font-weight: 700;
+    border-radius: 0.1rem;
+}
+
+.header-menu button:hover {
+    filter: brightness(0.9);
+}
+
+/* Main */
+
+/* Section About-me */
+
+.about-me{
+    max-width: 1120px;
+    margin: 0 auto;
+    margin-top: -9rem;
+
+    border-radius: 0.2rem;
+
+    background: #FFF;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "image informations"
+                            "image social-networks";
+}
+
+.image {
+    grid-area: image;
+    background: url(/assets/profile.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.informations {
+    grid-area: informations;
+}
+
+.informations-title {
+    background: #0FB57C;
+    margin: 1rem 2rem;
+    padding: 0.7rem 0.5rem;
+
+    max-width: 300px;
+    color: #FFF;
+}
+
+.informations-about {
+    margin: 1rem 2rem;
+}
+
+.informations-about p {
+    margin-bottom: 0.8rem;
+}
+
+.informations table {
+    margin: 1rem 2rem;
+}
+
+.informations table tr, td {
+    padding: 0.4rem;
+}
+
+.informations table td:first-child{
+    font-weight: 700;
+}
+
+.social-networks {
+    grid-area: social-networks;
+    background: #0FB57C;
+}
+
+.social-networks ul {
+    list-style: none;
+    overflow: hidden; 
+}
+
+.social-networks li{
+    display: inline;
+}
+
+.social-networks  li a {
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    text-decoration: none;
+}
+  
+.social-networks  li a img{
+    width: 3rem;
+    padding: 15px;
+}
+  
+.social-networks li a:hover {
+    background-color: #111111;
+}
+
+/*Section Skill Set */
+
+section {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 4rem 0;
+}
+
+section h1 {
+    color: #0FB57C;
+}
+
+
+.skills {
+    max-width: 1120px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 2rem 1rem;
+
+    background: #FFF;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 1rem;
+}
+
+.skills-text {
+    padding: 0 6rem;
+    display: flex;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.skills-habilities div{
+    margin: 1rem 0rem;
+}
+
+/* Section Education */
+
+/* Section Experience */
+
+/* Section Portfolio */
+
+
+/* Footer */
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    background: #0FB57C;
+
+    padding: 2rem 1rem;
+    color: #FFF;
+}
+
+footer h2 {
+    margin-bottom: 0.5rem;
+}
+
+footer ul {
+    list-style: none;
+    overflow: hidden; 
+}
+
+footer li{
+    display: inline;
+}
+
+footer  li a {
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    text-decoration: none;
+}
+  
+footer  li a img{
+    width: 3rem;
+    padding: 10px;
+}
+  
+footer li a:hover {
+    background-color: #111111;
+}
+
