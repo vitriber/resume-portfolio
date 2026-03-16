@@ -23,7 +23,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real project, wire this to an API route or a service like Resend / Formspree
     setSubmitted(true);
   };
 
@@ -61,7 +60,6 @@ export default function Contact() {
       }}
     >
       <div style={{ maxWidth: "1080px", margin: "0 auto" }}>
-        {/* Header */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -107,7 +105,6 @@ export default function Contact() {
           </em>
         </motion.h2>
 
-        {/* Two-column layout */}
         <div
           style={{
             display: "grid",
@@ -117,7 +114,6 @@ export default function Contact() {
           }}
           className="contact-grid"
         >
-          {/* Left: info */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -209,7 +205,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* CTA */}
             <div style={{ marginTop: "40px" }}>
               <a
                 href="mailto:vit.riber1@gmail.com"
@@ -255,7 +250,6 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right: form */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
