@@ -40,7 +40,6 @@ export default function About() {
           margin: "0 auto",
         }}
       >
-        {/* Section label */}
         <motion.p
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -58,7 +57,6 @@ export default function About() {
           About
         </motion.p>
 
-        {/* Heading */}
         <motion.h2
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -86,7 +84,6 @@ export default function About() {
           to use
         </motion.h2>
 
-        {/* Bio */}
         <motion.p
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -108,7 +105,6 @@ export default function About() {
           accessibility, and writing maintainable code that scales.
         </motion.p>
 
-        {/* Stats grid */}
         <div
           style={{
             display: "grid",
