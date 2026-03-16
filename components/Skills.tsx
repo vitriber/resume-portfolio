@@ -2,29 +2,14 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const skills = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Angular",
-  "HTML / CSS",
-  "Git",
-  "REST APIs",
-  "PostgreSQL",
-  "MongoDB",
-  "Docker",
-  "Tailwind CSS",
-  "GraphQL",
-  "AWS",
-  "Figma",
-  "Jest",
-  "CI / CD",
+  "JavaScript", "TypeScript", "React", "Next.js", "Node.js",
+  "Angular", "HTML / CSS", "Git", "REST APIs", "PostgreSQL",
+  "MongoDB", "Docker", "Tailwind CSS", "GraphQL", "AWS", "Figma", "Jest", "CI / CD",
 ];
 
-// Duplicate for seamless loop
 const track = [...skills, ...skills];
 
 function SkillTag({ label }: { label: string }) {
@@ -71,6 +56,7 @@ function SkillTag({ label }: { label: string }) {
 }
 
 export default function Skills() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -78,19 +64,10 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      style={{
-        padding: "112px 0",
-        background: "var(--black)",
-        overflow: "hidden",
-      }}
+      style={{ padding: "112px 0", background: "var(--black)", overflow: "hidden" }}
     >
-      {/* Header */}
       <div
-        style={{
-          padding: "0 32px",
-          maxWidth: "1080px",
-          margin: "0 auto 56px",
-        }}
+        style={{ padding: "0 32px", maxWidth: "1080px", margin: "0 auto 56px" }}
       >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -105,17 +82,13 @@ export default function Skills() {
             marginBottom: "16px",
           }}
         >
-          Skills
+          {t.skills.label}
         </motion.p>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            duration: 0.65,
-            ease: [0.22, 1, 0.36, 1],
-            delay: 0.08,
-          }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(36px, 5vw, 48px)",
@@ -124,7 +97,7 @@ export default function Skills() {
             color: "var(--white)",
           }}
         >
-          My{" "}
+          {t.skills.heading1}{" "}
           <em
             style={{
               fontStyle: "italic",
@@ -132,12 +105,11 @@ export default function Skills() {
               fontFamily: "var(--font-display)",
             }}
           >
-            tech stack
+            {t.skills.headingAccent}
           </em>
         </motion.h2>
       </div>
 
-      {/* Marquee container */}
       <div
         style={{
           position: "relative",
@@ -148,41 +120,23 @@ export default function Skills() {
           overflow: "hidden",
         }}
       >
-        {/* Left fade */}
         <div
           aria-hidden
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: "120px",
-            background:
-              "linear-gradient(to right, var(--surface) 0%, transparent 100%)",
-            zIndex: 2,
-            pointerEvents: "none",
+            position: "absolute", top: 0, left: 0, bottom: 0, width: "120px",
+            background: "linear-gradient(to right, var(--surface) 0%, transparent 100%)",
+            zIndex: 2, pointerEvents: "none",
           }}
         />
-        {/* Right fade */}
         <div
           aria-hidden
           style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: "120px",
-            background:
-              "linear-gradient(to left, var(--surface) 0%, transparent 100%)",
-            zIndex: 2,
-            pointerEvents: "none",
+            position: "absolute", top: 0, right: 0, bottom: 0, width: "120px",
+            background: "linear-gradient(to left, var(--surface) 0%, transparent 100%)",
+            zIndex: 2, pointerEvents: "none",
           }}
         />
-
-        <div
-          className="marquee-track"
-          style={{ gap: "12px", paddingLeft: "12px" }}
-        >
+        <div className="marquee-track" style={{ gap: "12px", paddingLeft: "12px" }}>
           {track.map((skill, i) => (
             <SkillTag key={`${skill}-${i}`} label={skill} />
           ))}

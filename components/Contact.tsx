@@ -2,22 +2,18 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Contact() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -54,10 +50,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      style={{
-        padding: "112px 32px 64px",
-        background: "var(--black)",
-      }}
+      style={{ padding: "112px 32px 64px", background: "var(--black)" }}
     >
       <div style={{ maxWidth: "1080px", margin: "0 auto" }}>
         <motion.p
@@ -73,17 +66,13 @@ export default function Contact() {
             marginBottom: "16px",
           }}
         >
-          Contact
+          {t.contact.label}
         </motion.p>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            duration: 0.65,
-            ease: [0.22, 1, 0.36, 1],
-            delay: 0.08,
-          }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(36px, 5vw, 48px)",
@@ -93,7 +82,7 @@ export default function Contact() {
             marginBottom: "64px",
           }}
         >
-          Let&apos;s{" "}
+          {t.contact.heading1}{" "}
           <em
             style={{
               fontStyle: "italic",
@@ -101,7 +90,7 @@ export default function Contact() {
               fontFamily: "var(--font-display)",
             }}
           >
-            work together
+            {t.contact.headingAccent}
           </em>
         </motion.h2>
 
@@ -114,14 +103,11 @@ export default function Contact() {
           }}
           className="contact-grid"
         >
+          {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{
-              duration: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.16,
-            }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
           >
             <p
               style={{
@@ -132,73 +118,32 @@ export default function Contact() {
                 marginBottom: "40px",
               }}
             >
-              I&apos;m currently open to new opportunities — whether it&apos;s
-              a full-time role, freelance project, or just a chat about
-              technology. Drop me a message and I&apos;ll get back to you
-              within 24 hours.
+              {t.contact.description}
             </p>
 
-            {/* Contact details */}
             <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
               <div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "11px",
-                    letterSpacing: "1px",
-                    color: "var(--text-dim)",
-                    textTransform: "uppercase",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Email
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "1px", color: "var(--text-dim)", textTransform: "uppercase", marginBottom: "6px" }}>
+                  {t.contact.emailLabel}
                 </p>
                 <a
                   href="mailto:vit.riber1@gmail.com"
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "16px",
-                    color: "var(--text)",
-                    transition: "color 0.2s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "var(--accent)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "var(--text)")
-                  }
+                  style={{ fontFamily: "var(--font-sans)", fontSize: "16px", color: "var(--text)", transition: "color 0.2s ease" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text)")}
                 >
                   vit.riber1@gmail.com
                 </a>
               </div>
-
               <div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "11px",
-                    letterSpacing: "1px",
-                    color: "var(--text-dim)",
-                    textTransform: "uppercase",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Phone
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "1px", color: "var(--text-dim)", textTransform: "uppercase", marginBottom: "6px" }}>
+                  {t.contact.phoneLabel}
                 </p>
                 <a
-                  href="tel:+5531994444893"
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "16px",
-                    color: "var(--text)",
-                    transition: "color 0.2s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "var(--accent)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "var(--text)")
-                  }
+                  href="tel:+351934943603"
+                  style={{ fontFamily: "var(--font-sans)", fontSize: "16px", color: "var(--text)", transition: "color 0.2s ease" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text)")}
                 >
                   +351 934 943 603
                 </a>
@@ -230,34 +175,19 @@ export default function Contact() {
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                Send me an email
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden
-                >
-                  <path
-                    d="M2 8h12M10 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                {t.contact.sendEmailCta}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+                  <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
             </div>
           </motion.div>
 
+          {/* Right — form */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{
-              duration: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.24,
-            }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.24 }}
           >
             {submitted ? (
               <div
@@ -271,31 +201,14 @@ export default function Contact() {
               >
                 <div
                   style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "50%",
-                    background: "var(--accent-dim)",
-                    border: "1px solid var(--accent-glow)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    width: "48px", height: "48px", borderRadius: "50%",
+                    background: "var(--accent-dim)", border: "1px solid var(--accent-glow)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
                     margin: "0 auto 20px",
                   }}
                 >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    aria-hidden
-                  >
-                    <path
-                      d="M4 10l5 5L16 5"
-                      stroke="var(--accent)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+                    <path d="M4 10l5 5L16 5" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
                 <h3
@@ -306,16 +219,10 @@ export default function Contact() {
                     marginBottom: "12px",
                   }}
                 >
-                  Message sent!
+                  {t.contact.successTitle}
                 </h3>
-                <p
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
-                    color: "var(--text-mid)",
-                  }}
-                >
-                  Thanks for reaching out. I&apos;ll get back to you soon.
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "var(--text-mid)" }}>
+                  {t.contact.successMessage}
                 </p>
               </div>
             ) : (
@@ -332,15 +239,10 @@ export default function Contact() {
                 }}
               >
                 <div>
-                  <label htmlFor="name" style={labelStyle}>
-                    Name
-                  </label>
+                  <label htmlFor="name" style={labelStyle}>{t.contact.form.nameLabel}</label>
                   <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Jane Smith"
+                    id="name" name="name" type="text" required
+                    placeholder={t.contact.form.namePlaceholder}
                     value={formState.name}
                     onChange={handleChange}
                     onFocus={() => setFocused("name")}
@@ -348,17 +250,11 @@ export default function Contact() {
                     style={inputStyle("name")}
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="email" style={labelStyle}>
-                    Email
-                  </label>
+                  <label htmlFor="email" style={labelStyle}>{t.contact.form.emailLabel}</label>
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="jane@example.com"
+                    id="email" name="email" type="email" required
+                    placeholder={t.contact.form.emailPlaceholder}
                     value={formState.email}
                     onChange={handleChange}
                     onFocus={() => setFocused("email")}
@@ -366,17 +262,11 @@ export default function Contact() {
                     style={inputStyle("email")}
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="message" style={labelStyle}>
-                    Message
-                  </label>
+                  <label htmlFor="message" style={labelStyle}>{t.contact.form.messageLabel}</label>
                   <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    placeholder="Tell me about your project or opportunity..."
+                    id="message" name="message" required rows={5}
+                    placeholder={t.contact.form.messagePlaceholder}
                     value={formState.message}
                     onChange={handleChange}
                     onFocus={() => setFocused("message")}
@@ -384,7 +274,6 @@ export default function Contact() {
                     style={inputStyle("message")}
                   />
                 </div>
-
                 <button
                   type="submit"
                   style={{
@@ -412,21 +301,9 @@ export default function Contact() {
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  Send Message
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    aria-hidden
-                  >
-                    <path
-                      d="M2 8h12M10 4l4 4-4 4"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                  {t.contact.form.submitButton}
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+                    <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </form>
@@ -437,16 +314,9 @@ export default function Contact() {
 
       <style>{`
         @media (max-width: 768px) {
-          .contact-grid {
-            grid-template-columns: 1fr !important;
-            gap: 48px !important;
-          }
+          .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
         }
-        input::placeholder,
-        textarea::placeholder {
-          color: var(--text-dim);
-          opacity: 1;
-        }
+        input::placeholder, textarea::placeholder { color: var(--text-dim); opacity: 1; }
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus {

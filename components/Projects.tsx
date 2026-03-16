@@ -2,56 +2,14 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-const projects = [
-  {
-    number: "01",
-    title: "VRS Code Platform",
-    description:
-      "A full-stack web platform for software consulting and development services. Built with Next.js and a Node.js backend, featuring dynamic content management, contact forms, and optimized performance across all devices.",
-    tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
-    liveUrl: "https://vrscode.com.br",
-    githubUrl: "https://github.com/vitorribeiro",
-    featured: true,
-  },
-  {
-    number: "02",
-    title: "React Dashboard UI",
-    description:
-      "A comprehensive admin dashboard with data visualization, user management, and real-time analytics. Features reusable chart components, responsive layouts, and a clean design system built entirely in React.",
-    tags: ["React", "TypeScript", "REST APIs", "Chart.js", "CSS Modules"],
-    liveUrl: "#",
-    githubUrl: "https://github.com/vitorribeiro",
-    featured: false,
-  },
-  {
-    number: "03",
-    title: "Node.js REST API",
-    description:
-      "A scalable RESTful API built with Node.js and Express, featuring JWT authentication, role-based access control, and thorough test coverage. Deployed with Docker on AWS with a CI/CD pipeline via GitHub Actions.",
-    tags: ["Node.js", "Express", "MongoDB", "Docker", "AWS", "Jest"],
-    liveUrl: "#",
-    githubUrl: "https://github.com/vitorribeiro",
-    featured: false,
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 function ExternalLinkIcon() {
   return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      aria-hidden
-      style={{ flexShrink: 0 }}
-    >
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden style={{ flexShrink: 0 }}>
       <path
         d="M2.5 11.5L11.5 2.5M11.5 2.5H6.5M11.5 2.5V7.5"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"
       />
     </svg>
   );
@@ -59,19 +17,14 @@ function ExternalLinkIcon() {
 
 function GithubIcon() {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-    >
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
       <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
     </svg>
   );
 }
 
 export default function Projects() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -87,7 +40,6 @@ export default function Projects() {
       }}
     >
       <div style={{ maxWidth: "1080px", margin: "0 auto" }}>
-        {/* Header */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -101,17 +53,13 @@ export default function Projects() {
             marginBottom: "16px",
           }}
         >
-          Projects
+          {t.projects.label}
         </motion.p>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            duration: 0.65,
-            ease: [0.22, 1, 0.36, 1],
-            delay: 0.08,
-          }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(36px, 5vw, 48px)",
@@ -121,7 +69,7 @@ export default function Projects() {
             marginBottom: "64px",
           }}
         >
-          Selected{" "}
+          {t.projects.heading1}{" "}
           <em
             style={{
               fontStyle: "italic",
@@ -129,28 +77,17 @@ export default function Projects() {
               fontFamily: "var(--font-display)",
             }}
           >
-            work
+            {t.projects.headingAccent}
           </em>
         </motion.h2>
 
-        {/* Project cards */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "24px",
-          }}
-        >
-          {projects.map((project, i) => (
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          {t.projects.items.map((project, i) => (
             <motion.div
               key={project.number}
               initial={{ opacity: 0, y: 32 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.65,
-                ease: [0.22, 1, 0.36, 1],
-                delay: 0.16 + i * 0.1,
-              }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.16 + i * 0.1 }}
               style={{
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
@@ -165,19 +102,14 @@ export default function Projects() {
               }}
               className="project-card"
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor =
-                  "var(--muted)";
-                (e.currentTarget as HTMLDivElement).style.transform =
-                  "translateY(-2px)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--muted)";
+                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor =
-                  "var(--border)";
-                (e.currentTarget as HTMLDivElement).style.transform =
-                  "translateY(0)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border)";
+                (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
               }}
             >
-              {/* Number */}
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
@@ -190,7 +122,6 @@ export default function Projects() {
                 {project.number}
               </span>
 
-              {/* Content */}
               <div>
                 <h3
                   style={{
@@ -215,13 +146,7 @@ export default function Projects() {
                 >
                   {project.description}
                 </p>
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "8px",
-                  }}
-                >
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
@@ -242,7 +167,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Links */}
               <div
                 style={{
                   display: "flex",
@@ -272,12 +196,10 @@ export default function Projects() {
                     transition: "opacity 0.2s ease",
                     whiteSpace: "nowrap",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.opacity = "0.85")
-                  }
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
                   onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
-                  Live
+                  {t.projects.liveLabel}
                   <ExternalLinkIcon />
                 </a>
                 <a
@@ -309,7 +231,7 @@ export default function Projects() {
                   }}
                 >
                   <GithubIcon />
-                  GitHub
+                  {t.projects.githubLabel}
                 </a>
               </div>
             </motion.div>

@@ -2,13 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-const stats = [
-  { number: "5+", label: "Years Experience" },
-  { number: "20+", label: "Projects Shipped" },
-  { number: "10+", label: "Happy Clients" },
-  { number: "3+", label: "Countries Served" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -20,6 +14,7 @@ const fadeUp = {
 };
 
 export default function About() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -34,12 +29,7 @@ export default function About() {
         borderBottom: "1px solid var(--border)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1080px",
-          margin: "0 auto",
-        }}
-      >
+      <div style={{ maxWidth: "1080px", margin: "0 auto" }}>
         <motion.p
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -54,7 +44,7 @@ export default function About() {
             marginBottom: "20px",
           }}
         >
-          About
+          {t.about.label}
         </motion.p>
 
         <motion.h2
@@ -71,7 +61,7 @@ export default function About() {
             marginBottom: "20px",
           }}
         >
-          Building things{" "}
+          {t.about.heading1}{" "}
           <em
             style={{
               fontStyle: "italic",
@@ -79,9 +69,9 @@ export default function About() {
               fontFamily: "var(--font-display)",
             }}
           >
-            people love
+            {t.about.headingAccent}
           </em>{" "}
-          to use
+          {t.about.heading2}
         </motion.h2>
 
         <motion.p
@@ -98,11 +88,7 @@ export default function About() {
             marginBottom: "72px",
           }}
         >
-          I&apos;m a Software Engineer based in Portugal with 5+ years of
-          experience building web applications. I specialize in the JavaScript
-          ecosystem — from crafting pixel-perfect UIs with React and Next.js to
-          building robust APIs with Node.js. I care deeply about performance,
-          accessibility, and writing maintainable code that scales.
+          {t.about.bio}
         </motion.p>
 
         <div
@@ -116,7 +102,7 @@ export default function About() {
           }}
           className="stats-grid"
         >
-          {stats.map((stat, i) => (
+          {t.about.stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial="hidden"
@@ -160,14 +146,10 @@ export default function About() {
 
       <style>{`
         @media (max-width: 768px) {
-          .stats-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
+          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 480px) {
-          .stats-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
+          .stats-grid { grid-template-columns: 1fr 1fr !important; }
         }
       `}</style>
     </section>

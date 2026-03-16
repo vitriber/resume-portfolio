@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -13,6 +14,7 @@ const fadeUp = {
 };
 
 export default function Hero() {
+  const { t } = useLanguage();
   const orbRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,21 +41,20 @@ export default function Hero() {
         background: "var(--black)",
       }}
     >
-      {/* Dot grid background */}
+      {/* Dot grid */}
       <div
         aria-hidden
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage:
-            "radial-gradient(circle, #2a2a2a 1px, transparent 0px)",
+          backgroundImage: "radial-gradient(circle, #2a2a2a 1px, transparent 0px)",
           backgroundSize: "32px 32px",
           opacity: 0.6,
           pointerEvents: "none",
         }}
       />
 
-      {/* Neon orb glow */}
+      {/* Neon orb */}
       <div
         ref={orbRef}
         aria-hidden
@@ -64,8 +65,7 @@ export default function Hero() {
           width: "700px",
           height: "700px",
           transform: "translate(-50%, 0)",
-          background:
-            "radial-gradient(circle, rgba(0,200,255,0.08) 0px, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0,200,255,0.08) 0px, transparent 70%)",
           pointerEvents: "none",
           transition: "transform 0.3s ease-out",
           borderRadius: "50%",
@@ -81,8 +81,7 @@ export default function Hero() {
           left: 0,
           right: 0,
           height: "200px",
-          background:
-            "linear-gradient(to top, var(--black) 0%, transparent 100%)",
+          background: "linear-gradient(to top, var(--black) 0%, transparent 100%)",
           pointerEvents: "none",
         }}
       />
@@ -97,7 +96,7 @@ export default function Hero() {
           width: "100%",
         }}
       >
-        {/* Top badge row */}
+        {/* Badges */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -136,7 +135,7 @@ export default function Hero() {
                 boxShadow: "0 0 6px var(--accent)",
               }}
             />
-            Available for work
+            {t.hero.available}
           </span>
 
           <span
@@ -154,7 +153,7 @@ export default function Hero() {
               letterSpacing: "0.5px",
             }}
           >
-            React · Next.js · TypeScript · Node.js
+            {t.hero.techStack}
           </span>
         </motion.div>
 
@@ -202,8 +201,7 @@ export default function Hero() {
             lineHeight: 1.5,
           }}
         >
-          Software Engineer crafting fast, modern web experiences with a focus
-          on clean code and great UX.
+          {t.hero.subtitle}
         </motion.p>
 
         {/* CTAs */}
@@ -244,14 +242,8 @@ export default function Hero() {
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            View Projects
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden
-            >
+            {t.hero.viewProjects}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
               <path
                 d="M3 8h10M9 4l4 4-4 4"
                 stroke="currentColor"
@@ -276,8 +268,7 @@ export default function Hero() {
               fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 500,
-              transition:
-                "border-color 0.2s ease, color 0.2s ease, transform 0.2s ease",
+              transition: "border-color 0.2s ease, color 0.2s ease, transform 0.2s ease",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = "var(--muted)";
@@ -290,7 +281,7 @@ export default function Hero() {
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            Contact me
+            {t.hero.contactMe}
           </a>
         </motion.div>
 
@@ -312,8 +303,7 @@ export default function Hero() {
             style={{
               width: "1px",
               height: "48px",
-              background:
-                "linear-gradient(to bottom, transparent, var(--border))",
+              background: "linear-gradient(to bottom, transparent, var(--border))",
             }}
           />
           <span
@@ -326,7 +316,7 @@ export default function Hero() {
               writingMode: "vertical-rl",
             }}
           >
-            Scroll
+            {t.hero.scroll}
           </span>
         </motion.div>
       </div>

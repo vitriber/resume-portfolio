@@ -1,29 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import type { Lang } from "@/lib/translations";
 
 export default function Navbar() {
+  const { lang, setLang, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navLinks = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
+  const handleLinkClick = () => setMenuOpen(false);
 
   return (
     <>
@@ -40,9 +39,7 @@ export default function Navbar() {
           alignItems: "center",
           justifyContent: "space-between",
           transition: "background 0.3s ease, border-color 0.3s ease",
-          background: scrolled
-            ? "rgba(10,10,10,0.85)"
-            : "transparent",
+          background: scrolled ? "rgba(10,10,10,0.85)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled
@@ -78,13 +75,9 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Nav */}
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "32px",
-          }}
+          style={{ display: "flex", alignItems: "center", gap: "32px" }}
           className="desktop-nav"
         >
           {navLinks.map((link) => (
@@ -110,7 +103,10 @@ export default function Navbar() {
             </a>
           ))}
 
-          {/* Download CV Button */}
+          {/* Language toggle */}
+          <LanguageToggle lang={lang} setLang={setLang} />
+
+          {/* Download CV */}
           <a
             href="/cv/en/Vitor-Ribeiro-CV-EN.pdf"
             download="Vitor-Ribeiro-CV-EN.pdf"
@@ -138,13 +134,19 @@ export default function Navbar() {
               e.currentTarget.style.color = "var(--text-mid)";
             }}
           >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 1v7M3 5.5l3 3 3-3M1 10h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M6 1v7M3 5.5l3 3 3-3M1 10h10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
-            Download CV
+            {t.nav.downloadCv}
           </a>
 
-          {/* CTA Badge */}
+          {/* Available badge */}
           <a
             href="#contact"
             style={{
@@ -182,7 +184,7 @@ export default function Navbar() {
                 animation: "pulse 2s ease-in-out infinite",
               }}
             />
-            Available for work
+            {t.nav.available}
           </a>
         </div>
 
@@ -201,42 +203,35 @@ export default function Navbar() {
             cursor: "pointer",
           }}
         >
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              background: menuOpen ? "var(--accent)" : "var(--text)",
-              borderRadius: "2px",
-              transition: "transform 0.2s ease, background 0.2s ease",
-              transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none",
-            }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              background: menuOpen ? "transparent" : "var(--text)",
-              borderRadius: "2px",
-              transition: "background 0.2s ease",
-            }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              background: menuOpen ? "var(--accent)" : "var(--text)",
-              borderRadius: "2px",
-              transition: "transform 0.2s ease, background 0.2s ease",
-              transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
-            }}
-          />
+          {[
+            menuOpen ? "translateY(7px) rotate(45deg)" : "none",
+            "none",
+            menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
+          ].map((transform, i) => (
+            <span
+              key={i}
+              style={{
+                display: "block",
+                width: "22px",
+                height: "2px",
+                background:
+                  i === 1
+                    ? menuOpen
+                      ? "transparent"
+                      : "var(--text)"
+                    : menuOpen
+                    ? "var(--accent)"
+                    : "var(--text)",
+                borderRadius: "2px",
+                transition: "transform 0.2s ease, background 0.2s ease",
+                transform,
+              }}
+            />
+          ))}
         </button>
       </nav>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div
           style={{
@@ -253,7 +248,7 @@ export default function Navbar() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            gap: "40px",
+            gap: "36px",
           }}
         >
           {navLinks.map((link) => (
@@ -279,6 +274,9 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+
+          <LanguageToggle lang={lang} setLang={setLang} />
+
           <a
             href="/cv/en/Vitor-Ribeiro-CV-EN.pdf"
             download="Vitor-Ribeiro-CV-EN.pdf"
@@ -297,10 +295,16 @@ export default function Navbar() {
               letterSpacing: "0.5px",
             }}
           >
-            <svg width="13" height="13" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 1v7M3 5.5l3 3 3-3M1 10h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M6 1v7M3 5.5l3 3 3-3M1 10h10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
-            Download CV
+            {t.nav.downloadCv}
           </a>
 
           <a
@@ -329,7 +333,7 @@ export default function Navbar() {
                 boxShadow: "0 0 6px var(--accent)",
               }}
             />
-            Available for work
+            {t.nav.available}
           </a>
         </div>
       )}
@@ -345,5 +349,47 @@ export default function Navbar() {
         }
       `}</style>
     </>
+  );
+}
+
+function LanguageToggle({
+  lang,
+  setLang,
+}: {
+  lang: Lang;
+  setLang: (l: Lang) => void;
+}) {
+  return (
+    <div
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        borderRadius: "6px",
+        border: "1px solid var(--border)",
+        overflow: "hidden",
+      }}
+    >
+      {(["en", "pt"] as Lang[]).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          style={{
+            padding: "5px 10px",
+            fontFamily: "var(--font-mono)",
+            fontSize: "11px",
+            letterSpacing: "0.8px",
+            textTransform: "uppercase",
+            cursor: "pointer",
+            border: "none",
+            borderRight: l === "en" ? "1px solid var(--border)" : "none",
+            background: lang === l ? "var(--accent-dim)" : "transparent",
+            color: lang === l ? "var(--accent)" : "var(--text-dim)",
+            transition: "background 0.15s ease, color 0.15s ease",
+          }}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
   );
 }
