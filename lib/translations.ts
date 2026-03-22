@@ -34,7 +34,7 @@ export const translations: Record<Lang, Translations> = {
       heading1: "Building things",
       headingAccent: "people love",
       heading2: "to use",
-      bio: "I'm a Software Engineer based in Brazil with 5+ years of experience building web applications. I specialize in the JavaScript ecosystem — from crafting pixel-perfect UIs with React and Next.js to building robust APIs with Node.js. I care deeply about performance, accessibility, and writing maintainable code that scales.",
+      bio: "I'm a Software Engineer based in Portugal with 5+ years of experience building web applications. I specialize in the JavaScript ecosystem — from crafting pixel-perfect UIs with React and Next.js to building robust APIs with Node.js. I care deeply about performance, accessibility, and writing maintainable code that scales.",
       stats: [
         { number: "5+", label: "Years Experience" },
         { number: "20+", label: "Projects Shipped" },
@@ -65,12 +65,12 @@ export const translations: Record<Lang, Translations> = {
         },
         {
           number: "02",
-          title: "React Dashboard UI",
+          title: "Roadmap AI",
           description:
-            "A comprehensive admin dashboard with data visualization, user management, and real-time analytics. Features reusable chart components, responsive layouts, and a clean design system built entirely in React.",
-          tags: ["React", "TypeScript", "REST APIs", "Chart.js", "CSS Modules"],
-          liveUrl: "#",
-          githubUrl: "https://github.com/vitorribeiro",
+            "An AI-powered web app that transforms raw ideas and unstructured text into organized, actionable roadmaps. Users input concepts or mental models and Claude AI generates structured plans with phases, tasks, and sequential next steps.",
+          tags: ["Next.js", "React", "TypeScript", "Claude AI", "Tailwind CSS"],
+          liveUrl: "https://roadmap-ai-beta.vercel.app/",
+          githubUrl: "https://github.com/vitriber/roadmap.ai",
         },
         {
           number: "03",
@@ -133,7 +133,7 @@ export const translations: Record<Lang, Translations> = {
       heading1: "Construindo coisas que",
       headingAccent: "as pessoas amam",
       heading2: "usar",
-      bio: "Sou um Engenheiro de Software baseado no Brasil com mais de 5 anos de experiência no desenvolvimento de aplicações web. Especializo-me no ecossistema JavaScript — desde a criação de UIs pixel-perfect com React e Next.js até a construção de APIs robustas com Node.js. Me preocupo profundamente com performance, acessibilidade e código de fácil manutenção.",
+      bio: "Sou um Engenheiro de Software baseado em Portugal com mais de 5 anos de experiência no desenvolvimento de aplicações web. Especializo-me no ecossistema JavaScript — desde a criação de UIs pixel-perfect com React e Next.js até a construção de APIs robustas com Node.js. Me preocupo profundamente com performance, acessibilidade e código de fácil manutenção.",
       stats: [
         { number: "5+", label: "Anos de Experiência" },
         { number: "20+", label: "Projetos Entregues" },
@@ -164,12 +164,12 @@ export const translations: Record<Lang, Translations> = {
         },
         {
           number: "02",
-          title: "React Dashboard UI",
+          title: "Roadmap AI",
           description:
-            "Dashboard administrativo completo com visualização de dados, gerenciamento de usuários e analytics em tempo real. Conta com componentes de gráficos reutilizáveis, layouts responsivos e um design system limpo construído inteiramente em React.",
-          tags: ["React", "TypeScript", "REST APIs", "Chart.js", "CSS Modules"],
-          liveUrl: "#",
-          githubUrl: "https://github.com/vitorribeiro",
+            "Aplicação web com IA que transforma ideias brutas e textos não estruturados em roadmaps organizados e acionáveis. O usuário insere conceitos ou modelos mentais e o Claude AI gera planos estruturados com fases, tarefas e próximos passos.",
+          tags: ["Next.js", "React", "TypeScript", "Claude AI", "Tailwind CSS"],
+          liveUrl: "https://roadmap-ai-beta.vercel.app/",
+          githubUrl: "https://github.com/vitriber/roadmap.ai",
         },
         {
           number: "03",

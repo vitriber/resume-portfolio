@@ -3,3 +3,5 @@ node_modules
 .next
 .claude
 .vscode
+.env.local
+.env
